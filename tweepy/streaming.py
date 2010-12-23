@@ -116,7 +116,7 @@ class Stream(object):
                 else:
                     error_counter = 0
                     self._read_loop(resp)
-            except timeout:
+            except (timeout, httplib.IncompleteRead):
                 if self.listener.on_timeout() == False:
                     break
                 if self.running is False:
