@@ -89,13 +89,13 @@ class Stream(object):
     def _run(self):
         # Authenticate
         url = "%s://%s%s" % (self.scheme, self.host, self.url)
-        self.auth.apply_auth(url, 'POST', self.headers, self.parameters)
 
         # Connect and process the stream
         error_counter = 0
         conn = None
         exception = None
         while self.running:
+            self.auth.apply_auth(url, 'POST', self.headers, self.parameters)
             if self.retry_count and error_counter > self.retry_count:
                 # quit if error count greater than retry count
                 break
