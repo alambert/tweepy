@@ -167,7 +167,9 @@ def bind_api(**config):
                 raise TweepError(error_msg, resp)
 
             # Parse the response payload
-            result = self.api.parser.parse(self, resp.read())
+            payload = resp.read()
+            result = self.api.parser.parse(self, payload)
+            setattr(result, "payload", payload)
 
             conn.close()
 
