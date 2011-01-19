@@ -169,7 +169,12 @@ def bind_api(**config):
             # Parse the response payload
             payload = resp.read()
             result = self.api.parser.parse(self, payload)
-            setattr(result, "payload", payload)
+            try:
+                setattr(result, "payload", payload)
+            except AttributeError:
+                # if we can't do it, don't crash the app
+                # this happens in nearby_places
+                pass
 
             conn.close()
 
