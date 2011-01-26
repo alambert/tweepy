@@ -678,12 +678,30 @@ class API(object):
         allowed_param = ['lat', 'long', 'accuracy', 'granularity', 'max_results']
     )
 
+    # DEPRECATED
     """ geo/nearby_places """
     nearby_places = bind_api(
         path = '/geo/nearby_places.json',
         payload_type = 'json',
         allowed_param = ['lat', 'long', 'ip', 'accuracy', 'granularity', 'max_results']
     )
+
+    """ geo/search """
+    geo_search = bind_api(
+        path = '/geo/search.json',
+        payload_type = 'json',
+        allowed_param = [
+            'lat',
+            'long',
+            'query',
+            'ip',
+            'granularity',
+            'accuracy',
+            'max_results',
+            'contained_within',
+            'attribute:street_address'
+            ]
+        )
 
     """ geo/id """
     geo_id = bind_api(
